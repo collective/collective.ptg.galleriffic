@@ -1,16 +1,41 @@
 from zope.i18nmessageid import MessageFactory
 from collective.plonetruegallery.utils import createSettingsFactory
 from collective.plonetruegallery.browser.views.display import \
-    BaseDisplayType
+    BaseDisplayType, jsbool
 from collective.plonetruegallery.browser.views.display import jsbool
 from collective.plonetruegallery.interfaces import IBaseSettings
+#from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+from zope import schema
 
 _ = MessageFactory('collective.ptg.galleriffic')
 
 class IGallerifficDisplaySettings(IBaseSettings):
-    pass
-
-
+    gallerific_showthumbs = schema.Bool(
+        title=_(u"label_gallerific_showthumbs",
+            default=u"Show thumbnails"),
+        default=True)
+        
+    gallerific_toppager = schema.Bool(
+        title=_(u"label_gallerific_toppager",
+            default=u"Show top pager"),
+        default=True)
+        
+    ggallerific_bottompager = schema.Bool(
+        title=_(u"label_gallerific_bottompager",
+            default=u"Show bottom pager"),
+        default=True)
+        
+    gallerific_sscontrols = schema.Bool(
+        title=_(u"label_gallerific_sscontrols",
+            default=u"Show sscontrols"),
+        default=True)
+        
+    gallerific_navcontrols = schema.Bool(
+        title=_(u"label_gallerific_navcontrols",
+            default=u"Show navcontrols"),
+        default=True)
+        
+    
 class GallerifficDisplayType(BaseDisplayType):
 
     name = u"galleriffic"
@@ -78,15 +103,15 @@ $(document).ready(function() {
         delay:                     %(delay)i,
         numThumbs:                 %(batch_size)i,
         preloadAhead:              10,
-        enableTopPager:            true,
-        enableBottomPager:         true,
+        enableTopPager:            %(toppager)s,
+        enableBottomPager:         %(bottompager)s,
         maxPagesToShow:            7,
         imageContainerSel:         '#slideshow',
         controlsContainerSel:      '#controls',
         captionContainerSel:       '#caption',
         loadingContainerSel:       '#loading',
-        renderSSControls:          true,
-        renderNavControls:         true,
+        renderSSControls:          %(sscontrols)s,
+        renderNavControls:         %(navcontrols)s,
         playLinkText:              'Play Slideshow',
         pauseLinkText:             'Pause Slideshow',
         prevLinkText:              '&lsaquo; Previous Photo',
@@ -145,6 +170,10 @@ $(document).ready(function() {
     'timed': jsbool(self.settings.timed),
     'delay': self.settings.delay,
     'duration': self.settings.duration,
-    'batch_size': self.settings.batch_size
+    'batch_size': self.settings.batch_size,
+    'toppager' :   jsbool(self.settings.gallerific_toppager),
+    'bottompager': jsbool(self.settings.gallerific_bottompager),
+    'sscontrols':   jsbool(self.settings.gallerific_sscontrols),
+    'navcontrols':  jsbool(self.settings.gallerific_navcontrols), 
 }
 GallerifficSettings = createSettingsFactory(GallerifficDisplayType.schema)
