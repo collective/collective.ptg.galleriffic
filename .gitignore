@@ -5,3 +5,5 @@ collective.ptg.galleriffic.egg-info
 *.mo
 
 *.pyc
+
+dist/collective.ptg.galleriffic-1.1.zip
