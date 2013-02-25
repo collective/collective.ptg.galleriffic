@@ -1,9 +1,22 @@
 Changelog
 =========
 
+<<<<<<< HEAD
 1.1.1
 
 - added copyright information [eehmke]
+=======
+1.1.1 (2012-02-26)
+------------------
+
+- added options [espenmn]
+
+1.1 (2012-10-10)
+------------------
+
+- added options [espenmn]
+
+>>>>>>> Bugfix
 
 1.1 (2012-10-10)
 ------------------

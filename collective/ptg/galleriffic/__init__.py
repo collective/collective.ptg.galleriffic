@@ -20,7 +20,7 @@ class IGallerifficDisplaySettings(IBaseSettings):
             default=u"Show top pager"),
         default=True)
         
-    ggallerific_bottompager = schema.Bool(
+    gallerific_bottompager = schema.Bool(
         title=_(u"label_gallerific_bottompager",
             default=u"Show bottom pager"),
         default=True)
