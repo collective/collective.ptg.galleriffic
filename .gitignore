@@ -9,3 +9,5 @@ collective.ptg.galleriffic.egg-info
 dist/collective.ptg.galleriffic-1.1.zip
 
 dist/collective.ptg.galleriffic-1.1.1.tar.gz
+
+*.gz
